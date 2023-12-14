@@ -1,0 +1,6 @@
+Make,Model,Year,Engine Fuel Type,Engine HP,Engine Cylinders,Transmission Type,Driven_Wheels,Number of Doors,Market Category,Vehicle Size,Vehicle Style,highway MPG,city mpg,Popularity,MSRP
+Alfa Romeo,4C,2015,premium unleaded (required),237,4,AUTOMATED_MANUAL,rear wheel drive,2,"Luxury,High-Performance",Compact,Convertible,34,24,113,63900
+Alfa Romeo,4C,2015,premium unleaded (required),237,4,AUTOMATED_MANUAL,rear wheel drive,2,"Luxury,High-Performance",Compact,Coupe,34,24,113,68400
+Alfa Romeo,4C,2015,premium unleaded (required),237,4,AUTOMATED_MANUAL,rear wheel drive,2,"Luxury,High-Performance",Compact,Coupe,34,24,113,53900
+Alfa Romeo,4C,2016,premium unleaded (required),237,4,AUTOMATED_MANUAL,rear wheel drive,2,"Luxury,High-Performance",Compact,Coupe,34,24,113,55900
+Alfa Romeo,4C,2016,premium unleaded (required),237,4,AUTOMATED_MANUAL,rear wheel drive,2,"Luxury,High-Performance",Compact,Convertible,34,24,113,65900
