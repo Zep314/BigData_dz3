@@ -5,14 +5,14 @@
 import kaggle
 import csv
 from functools import reduce
+from hdfs import InsecureClient
 
 def get_data_from_kaggle():
     # Kaggle token
     # Windows: C:\Users\<user>\.kaggle\kaggle.json
-    # Linux:
+    # Linux: /home/<user>/.kaggle/kaggle.json
     kaggle.api.authenticate()
     kaggle.api.dataset_download_files("CooperUnion/cardataset", path="./", unzip=True, quiet=True)
-
 
 
 def transform_data():
@@ -32,17 +32,19 @@ def transform_data():
             data1[data2[0]] = [1, data2[1]]
         return data1
 
-    data = reduce(reducer, mapper('data.csv'))
-    return {k: v[1] for k,v in data.items()}
+    return reduce(reducer, mapper('data.csv'))
+
 
 def save_data_to_csv(data):
-    fields = ['Make', 'MSRP']
     with open('transformed-data.csv', 'w', newline='') as state_file:
         writer = csv.writer(state_file)
-        writer.writerows(data)
+        writer.writerows([['Make', 'MSRP']] + [[k, v[1]] for k, v in data.items()])
+
 
 def load_to_hadoop():
-    pass
+    client = InsecureClient('http://192.168.10.37:50070', user='root')
+    print(client)
+    client.upload('/transformed-data.csv','transformed-data.csv')
 
 def load_to_hive():
     pass
@@ -51,9 +53,9 @@ def data_analysis():
     pass
 
 if __name__ == '__main__':
-    get_data_from_kaggle()
-    data = transform_data()
-    save_data_to_csv(data)
+    #get_data_from_kaggle()
+#    data = transform_data()
+#    save_data_to_csv(data)
     load_to_hadoop()
     load_to_hive()
     data_analysis()
