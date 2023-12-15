@@ -6,6 +6,7 @@ import kaggle
 import csv
 from functools import reduce
 from hdfs import InsecureClient
+import pyhs2
 
 def get_data_from_kaggle():
     # Kaggle token
@@ -46,15 +47,23 @@ def load_to_hadoop():
     client.upload('/transformed-data.csv','transformed-data.csv', overwrite=True)
 
 def load_to_hive():
-    pass
+    # drop table if exists cardataset;
+    # create table cardataset(make String, msrp Float) row format delimited fields terminated by ',' stored as textfile;
+    # load data inpath '/transformed-data.csv' into table cardataset;
+    conn = connect('192.168.10.37', database='default', port=10000)
+    cursor = conn.cursor()
+    cursor.execute('select * from cardataset')
+    for row in cursor:
+        print(row[0])
+    cursor.close()
 
 def data_analysis():
     pass
 
 if __name__ == '__main__':
-#    get_data_from_kaggle()
-#    data = transform_data()
-#    save_data_to_csv(data)
-    load_to_hadoop()
+    # get_data_from_kaggle()
+    # data = transform_data()
+    # save_data_to_csv(data)
+#    load_to_hadoop()
     load_to_hive()
     data_analysis()
