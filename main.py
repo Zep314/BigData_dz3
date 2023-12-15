@@ -43,8 +43,7 @@ def save_data_to_csv(data):
 
 def load_to_hadoop():
     client = InsecureClient('http://192.168.10.37:50070', user='root')
-    print(client)
-    client.upload('/transformed-data.csv','transformed-data.csv')
+    client.upload('/transformed-data.csv','transformed-data.csv', overwrite=True)
 
 def load_to_hive():
     pass
@@ -53,7 +52,7 @@ def data_analysis():
     pass
 
 if __name__ == '__main__':
-    #get_data_from_kaggle()
+#    get_data_from_kaggle()
 #    data = transform_data()
 #    save_data_to_csv(data)
     load_to_hadoop()
